@@ -1,10 +1,16 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Middleware;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Controller as BaseController;
 use Response;
 class SiteController extends BaseController {
+	public function __construct() {
+		// $this->middleware('auth.basic');
+	}
+	
+	
 	/* 1. Negara berdasar jenis pinjaman */
 	public function getCountryIBD() {
 		return $this->getCountryByLendingTypes('IBD');
@@ -50,6 +56,7 @@ class SiteController extends BaseController {
 		);
 		curl_setopt_array( $ch, $options ); 
 		$result =  curl_exec($ch); 
+		
 		return $result;
 		// return Response::json($result,200);
 	}
